@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b0d12">
+<title>SOUND ENGINEERING NEWS Ver.3</title>
+<style>
+:root{--bg:#080b10;--card:#111722;--line:#263041;--text:#f4f7fb;--muted:#aab4c3;--accent:#8fb7ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif}
+.wrap{max-width:1050px;margin:auto;padding:18px}.top{padding:35px 0 22px;border-bottom:1px solid var(--line)}
+.logo{font-size:12px;letter-spacing:.16em;color:var(--accent);font-weight:800}.hero{font-size:clamp(38px,9vw,72px);font-weight:850;line-height:.98;margin:14px 0}.sub{color:var(--muted)}
+.notice{margin:18px 0;padding:14px 16px;border:1px solid #334156;border-radius:15px;background:#101620;color:#c8d1df}
+.controls{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}.filter{border:1px solid #303a4b;background:#10151e;color:#dce3ee;padding:9px 13px;border-radius:999px}.active{border-color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:19px;cursor:pointer}.card:hover{border-color:#52637d}.tag{font-size:11px;color:var(--accent);font-weight:800}.date{font-size:12px;color:#718096;margin-top:4px}.card h2{font-size:20px;margin:8px 0}.card p{color:#b9c3d0;line-height:1.65}.stars{letter-spacing:2px}.score{font-size:12px;color:#9da9bb;letter-spacing:0}
+.feature{margin:22px 0;padding:24px;border:1px solid #334156;border-radius:22px;background:linear-gradient(135deg,#151d2b,#0e131b)}.feature h2{font-size:28px;margin:8px 0}
+#modal{position:fixed;inset:0;background:#000b;display:none;align-items:flex-end;justify-content:center;padding:10px;z-index:10}#modal.open{display:flex}.modalbox{width:min(780px,100%);max-height:90vh;overflow:auto;background:#101620;border:1px solid #354257;border-radius:22px;padding:24px}.close{float:right;border:0;background:#263143;color:white;border-radius:50%;width:34px;height:34px}.detail{color:#c3ccd8;line-height:1.8}.interview{border-left:3px solid var(--accent);padding:12px 15px;margin:20px 0;background:#0c121b}.source{color:#bcd3ff}.foot{margin-top:40px;padding:24px 0;border-top:1px solid var(--line);color:#68758a;font-size:12px}
+@media(max-width:600px){.wrap{padding:14px}.card{padding:17px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><div class="logo">SOUND ENGINEERING NEWS / VER.3</div><div class="hero">音楽 × 音響 × 工学</div><div class="sub">毎日5分。音のニュースを、工学と面接の材料に。</div></header>
+<div class="notice">📱 <b>Safariで使う方法：</b> このフォルダの <b>index.html</b> をSafariで開けばサイトとして動きます。ネット公開するとURLからいつでも開けます。</div>
+
+<section class="feature">
+<div class="tag">TODAY / 2026.09.05</div>
+<h2>Audacity 4、大型アップデート</h2>
+<p>無料・オープンソースの音声編集ソフトAudacityが大幅アップデート。非破壊編集、ワークスペース、プラグイン対応など制作環境が強化されています。</p>
+<div class="stars">★★★★☆ <span class="score">面接で使える度 4/5</span></div>
+</section>
+
+<h2>📰 Latest</h2>
+<div class="controls">
+<button class="filter active" data-cat="all">すべて</button><button class="filter" data-cat="音響">🔊 音響</button><button class="filter" data-cat="AI">🤖 AI</button><button class="filter" data-cat="研究">🧪 研究</button><button class="filter" data-cat="空間音響">🌐 空間音響</button><button class="filter" data-cat="面接">🎓 面接</button>
+</div>
+<div id="news" class="grid"></div>
+
+<footer class="foot">Ver.3 prototype / ニュースは公開情報をもとに整理したサンプルです。自動更新には別途ニュース取得・更新の仕組みが必要です。</footer>
+</div>
+<div id="modal"><div class="modalbox"><button class="close" onclick="closeModal()">×</button><div id="detail"></div></div></div>
+
+<script>
+const A=[
+{cat:["音響","面接"],date:"2026.09.04",title:"Audacity 4、大型アップデート",sum:"音声編集ソフトAudacityの大規模アップデート。非破壊編集やワークスペース、プラグイン対応などを強化。",score:4,body:"音楽制作では、録音した音を編集・加工するためのデジタル環境が重要です。今回のアップデートは、音を扱う道具そのものがどう進化しているかを見る題材になります。",q:"「音楽制作の技術が便利になると、音楽を作る人の役割はどう変わる？」",url:"https://www.musicradar.com/music-tech/audacity-enters-a-new-era-with-the-biggest-update-in-the-free-and-open-source-audio-editors-25-year-history"},
+{cat:["AI","面接"],date:"2026.09.04",title:"AIと音楽プロデューサーのこれから",sum:"AIが制作工程に入る一方、人間の感情・判断・共同作業をどう残すかが議論されています。",score:5,body:"AIは制作を高速化できますが、「何を表現したいか」「どんな音が人に届くか」という目的の設定は別の問題です。技術と人間の感性をどう組み合わせるかが重要です。",q:"「AIにできることと、人間にしかできないことをどう分ける？」",url:"https://www.whathifi.com/streaming-entertainment/we-discount-our-own-emotional-and-experiential-life-at-our-peril-british-sound-engineers-on-the-future-of-music-in-an-ai-world"},
+{cat:["空間音響","音響"],date:"2026.09.02",title:"Sonosが新しいヘッドホン・サウンドバーを発表",sum:"新しいヘッドホンとサウンドバーに加え、AIを組み込んだオーディオOSを発表。",score:4,body:"家庭の音響機器でも、ノイズキャンセリング、空間的な音、音声強調など、信号処理と人間の聴覚を利用した機能が増えています。",q:"「聞き取りやすい音を作るとき、人間の聴覚特性をどう利用できる？」",url:"https://www.theverge.com/tech/987129/sonos-27-ace-ultra-beam-ultra-announcement"},
+{cat:["音響","研究"],date:"2026.09.05",title:"CanJam 2026で注目のヘッドホン技術",sum:"ヘッドホン・イヤホンの展示会で、多ドライバー、空間表現、個人化など多様な音響技術が紹介されています。",score:3,body:"ヘッドホンは小さな機器ですが、ドライバー、筐体、信号処理、装着状態などが聞こえ方に影響します。音質を考えるときは単純な「高音質」ではなく、どの物理・知覚要因が関係するかを考えるのがポイントです。",q:"「良い音とは何かを、数値だけで決められる？」",url:"https://www.theverge.com/tech/990706/a-day-at-canjam-socal-2026"},
+{cat:["研究","面接"],date:"2026.09.08–10",title:"日本音響学会・2026年秋季研究発表会",sum:"音響分野の研究者・技術者が集まる研究発表会。音声、聴覚、電気音響、音楽音響などを扱います。",score:5,body:"音響学は音の物理だけでなく、聴覚や音楽、音声、機器まで幅広く扱います。音楽工学に進みたい人にとって、実際の研究テーマを知る入口になります。",q:"「軽音部で感じた“音が聞き取りにくい”を、どう測定して工学的に解決する？」",url:"https://acoustics.jp/annualmeeting/program/"}
+];
+const news=document.getElementById("news");
+const stars=n=>"★".repeat(n)+"☆".repeat(5-n);
+function render(c="all"){news.innerHTML="";A.filter(x=>c==="all"||x.cat.includes(c)).forEach(x=>{let e=document.createElement("article");e.className="card";e.innerHTML=`<div class="tag">${x.cat.join(" / ")}</div><div class="date">${x.date}</div><h2>${x.title}</h2><p>${x.sum}</p><div class="stars">${stars(x.score)} <span class="score">面接 ${x.score}/5</span></div>`;e.onclick=()=>open(x);news.appendChild(e)})}
+function open(x){document.getElementById("detail").innerHTML=`<div class="tag">${x.cat.join(" / ")}</div><div class="date">${x.date}</div><h1>${x.title}</h1><div class="detail">${x.body}</div><h2>🎓 面接で考える</h2><div class="interview">${x.q}</div><div class="stars">${stars(x.score)} <span class="score">面接で使える度 ${x.score}/5</span></div><p><a class="source" href="${x.url}" target="_blank" rel="noopener">🔗 元記事・公式情報を開く</a></p>`;document.getElementById("modal").classList.add("open")}
+function closeModal(){document.getElementById("modal").classList.remove("open")}
+document.querySelectorAll(".filter").forEach(b=>b.onclick=()=>{document.querySelectorAll(".filter").forEach(z=>z.classList.remove("active"));b.classList.add("active");render(b.dataset.cat)});
+document.getElementById("modal").onclick=e=>{if(e.target.id==="modal")closeModal()};render();
+</script>
+</body></html>
